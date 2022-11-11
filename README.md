@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/artifacthealth/hydrate-mongodb.svg?branch=master)](https://travis-ci.org/artifacthealth/hydrate-mongodb)
+[![Build Status](https://travis-ci.org/artifacthealth/iodine-hydrate-mongodb.svg?branch=master)](https://travis-ci.org/artifacthealth/hydrate-mongodb)
 
 # Hydrate
 **An Object/Document Mapping (ODM) framework for Node.js and MongodDB**
@@ -37,13 +37,13 @@ changes with the database, which can result in significant performance gains.
 Version 2.0 updates Hydrate to use version 3.0 of the MongoDB NodeJS native driver. Version 3.0 of the MongoDB NodeJS driver [introduces several breaking changes](https://github.com/mongodb/node-mongodb-native/blob/3.0.0/CHANGES_3.0.0.md)
 which result in breaking changes in Hydrate. 
 
-* Since MongoClient.connect(...) now returns a MongoClient object instead of a Db object, [createSessionFactory](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html#createsessionfactory) 
+* Since MongoClient.connect(...) now returns a MongoClient object instead of a Db object, [createSessionFactory](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html#createsessionfactory) 
 now takes a MongoClient object instead of a Db object. 
 * The new NodeJS MongoDB driver now requires that a database name be specified in order to get a Db object. Therefore, the database name
-must now be specified in Hydrate. There are 3 ways this can be done (in order of priority from highest to lowest): 1) Specify the database name in the [@Collection](https://artifacthealth.github.io/hydrate-mongodb/globals.html#collection) 
-decorator, 2) Provide the database name as an argument to [createSessionFactory](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html#createsessionfactory), 
-or 3) Specify the database name in the [Configuration](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html#databaseName).
-* The [connection](https://artifacthealth.github.io/hydrate-mongodb/interfaces/sessionfactory.html#connection) property on the SessionFactory 
+must now be specified in Hydrate. There are 3 ways this can be done (in order of priority from highest to lowest): 1) Specify the database name in the [@Collection](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#collection) 
+decorator, 2) Provide the database name as an argument to [createSessionFactory](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html#createsessionfactory), 
+or 3) Specify the database name in the [Configuration](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html#databaseName).
+* The [connection](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/sessionfactory.html#connection) property on the SessionFactory 
 is now a MongoClient object instead of a Db object. 
 * The MongoDB driver was change to a peer dependency
 * In version 2.2 of the MongoDB NodeJS native driver, [domain support was disabled by default](http://mongodb.github.io/node-mongodb-native/2.2/upgrade-migration/main/). 
@@ -129,8 +129,8 @@ export class Task {
 ### Configuring Hydrate
 
 Once our model is defined, we need to tell Hydrate about it. We do this by adding the model to an 
-[AnnotationMappingProvider](https://artifacthealth.github.io/hydrate-mongodb/classes/annotationmappingprovider.html), 
-then adding the mapping provider to the [Configuration](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html).
+[AnnotationMappingProvider](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/annotationmappingprovider.html), 
+then adding the mapping provider to the [Configuration](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html).
 
 **server.ts:**
 ```typescript
@@ -147,8 +147,8 @@ config.addMapping(new AnnotationMappingProvider(model));
 
 We use the standard [MongoDB native driver](https://github.com/mongodb/node-mongodb-native) to establish a connection 
 to MongoDB. Once the connection is open, we create a 
-[SessionFactory](https://artifacthealth.github.io/hydrate-mongodb/interfaces/sessionfactory.html) using the MongoDB connection and the previously 
-defined [Configuration](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html). 
+[SessionFactory](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/sessionfactory.html) using the MongoDB connection and the previously 
+defined [Configuration](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html). 
 
 **server.ts (con't):**
 ```typescript
@@ -167,9 +167,9 @@ A Hydrate Session should not be confused with the web-server session. The Hydrat
 [EntityManager](http://www.objectdb.com/java/jpa/persistence/overview), and is responsible for managing the lifecycle of 
 persistent entities.
 
-Typically the [SessionFactory](https://artifacthealth.github.io/hydrate-mongodb/interfaces/sessionfactory.html) is 
-created once at server startup and then used to create a [Session](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html) for each connection to 
-the server. For example, using a [Session](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html) 
+Typically the [SessionFactory](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/sessionfactory.html) is 
+created once at server startup and then used to create a [Session](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html) for each connection to 
+the server. For example, using a [Session](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html) 
 in an [Express](http://expressjs.com/en/guide/routing.html) route might look something like this:
 
 ```typescript
@@ -184,25 +184,25 @@ app.get('/', function (req, res, next) {
 }); 
 ```
 
-Calling [close](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html#close)
-on the [Session](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html) persists 
-any changes to the database and closes the [Session](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html). 
-Call [flush](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html#flush) 
-instead to persist any changes without closing the [Session](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html).
+Calling [close](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html#close)
+on the [Session](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html) persists 
+any changes to the database and closes the [Session](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html). 
+Call [flush](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html#flush) 
+instead to persist any changes without closing the [Session](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html).
 
 
 ### Working with Persistent Objects
 
 In order to create a new `Task` we instantiate the task and then add it to the 
-[Session](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html) by calling 
-[save](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html#save).
+[Session](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html) by calling 
+[save](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html#save).
 
 ```typescript
 var task = new Task("Take out the trash.");
 session.save(task);
 ```
 
-To find a task by identifier we use [find](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html#find).
+To find a task by identifier we use [find](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html#find).
 
 ```typescript
 session.find(Task, id, (err, task) => {
@@ -211,7 +211,7 @@ session.find(Task, id, (err, task) => {
 ```
 
 To find all tasks that have not yet been completed, we can use the 
-[query](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html#query) method.
+[query](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html#query) method.
 
 ```typescript
 session.query(Task).findAll({ status: TaskStatus.Pending }, (err, tasks) => {
@@ -235,8 +235,8 @@ session.find(Person, personId, (err, person) => {
 ```
 
 Hydrate provides a mechanism to retrieve references between persistent entities. We do this using 
-[fetch](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html#fetch). Note that 
-[fetch](https://artifacthealth.github.io/hydrate-mongodb/interfaces/session.html#fetch)
+[fetch](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html#fetch). Note that 
+[fetch](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/session.html#fetch)
 uses the same [dot notation](https://docs.mongodb.org/manual/core/document/#dot-notation) that MongoDB uses 
 for queries.
 
@@ -249,7 +249,7 @@ session.fetch(task, "assigned", (err) => {
 });
 ```
 
-The [fetch](https://artifacthealth.github.io/hydrate-mongodb/interfaces/findonequery.html) method can be used in 
+The [fetch](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/findonequery.html) method can be used in 
 conjunction with queries as well.
 
 ```typescript
@@ -261,7 +261,7 @@ session.find(Task, id).fetch("assigned", (err, task) => {
 
 ### Promises and Observables
 
-All queries can use a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for the query result by calling [asPromise](https://artifacthealth.github.io/hydrate-mongodb/interfaces/findonequery.html#aspromise).
+All queries can use a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) for the query result by calling [asPromise](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/findonequery.html#aspromise).
 
 #### Example: Finding an entity by identifier
 
@@ -279,7 +279,7 @@ session.query(Task).findAll({ assigned: person }).asPromise().then((tasks) => {
 });
 ```
 
-Queries that return multiple entities may return an [Observable](http://reactivex.io/documentation/observable.html) for the query by calling [asObservable](https://artifacthealth.github.io/hydrate-mongodb/interfaces/findquery.html#asobservable).
+Queries that return multiple entities may return an [Observable](http://reactivex.io/documentation/observable.html) for the query by calling [asObservable](https://artifacthealth.github.io/iodine-hydrate-mongodb/interfaces/findquery.html#asobservable).
 
 ```typescript
 session.query(Task).findAll({ assigned: person }).asObservable().subscribe((task) => {
@@ -322,25 +322,25 @@ export class Person {
 ```
 
 * The entity must be a class
-* The entity must be decorated with the [Entity](https://artifacthealth.github.io/hydrate-mongodb/globals.html#entity) decorator
+* The entity must be decorated with the [Entity](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#entity) decorator
 * The entity is **not** required to have a parameterless constructor, which is different than JPA and Hibernate. This 
 allows for entities to enforce required parameters for construction. When an entity is deserialized from the database,
 the constructor is not called. This means the internal state of an entity must fully represented by it's serialized
 fields.
 * An identifier is assigned to the entity when it is saved. 
-* If the [Immutable](https://artifacthealth.github.io/hydrate-mongodb/globals.html#immutable) decorator is specified on an Entity, the entity is excluded from dirty checking.
+* If the [Immutable](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#immutable) decorator is specified on an Entity, the entity is excluded from dirty checking.
 
 <a name="Collections"></a>
 ### Collections
 
 If a name for the collection is not given, an entity is mapped to a collection in MongoDB based on the name of the 
 class. 
-The [collectionNamingStrategy](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html#collectionnamingstrategy) 
-in the [Configuration](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html) is used to determine 
+The [collectionNamingStrategy](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html#collectionnamingstrategy) 
+in the [Configuration](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html) is used to determine 
 the name of the collection. The default naming strategy is 
-[CamelCase](https://artifacthealth.github.io/hydrate-mongodb/modules/namingstrategies.html#camelcase). Alternatively, 
+[CamelCase](https://artifacthealth.github.io/iodine-hydrate-mongodb/modules/namingstrategies.html#camelcase). Alternatively, 
 a name for the collection can be specified using the 
-[Collection](https://artifacthealth.github.io/hydrate-mongodb/globals.html#collection) decorator. 
+[Collection](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#collection) decorator. 
 
 ```typescript
 @Entity()
@@ -361,7 +361,7 @@ export class Person {
 ### Fields
 
 Fields are mapped on an opt-in basis. *Only fields that are decorated are mapped.* The name for the field in the document
-can optionally be specified using the [Field](https://artifacthealth.github.io/hydrate-mongodb/globals.html#field) decorator.
+can optionally be specified using the [Field](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#field) decorator.
 
 ```typescript
 @Entity()
@@ -373,17 +373,17 @@ export class User {
 ```
   
 If the name for the field is not specified, the 
-[fieldNamingStrategy](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html#fieldnamingstrategy) 
-on the [Configuration](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html) is used to determine
-the name of the field. The default naming strategy is [CamelCase](https://artifacthealth.github.io/hydrate-mongodb/modules/namingstrategies.html#camelcase).
+[fieldNamingStrategy](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html#fieldnamingstrategy) 
+on the [Configuration](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html) is used to determine
+the name of the field. The default naming strategy is [CamelCase](https://artifacthealth.github.io/iodine-hydrate-mongodb/modules/namingstrategies.html#camelcase).
 
 <a name="Identity"></a>
 ### Identity
   
-The [identityGenerator](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html#identitygenerator) 
-on the [Configuration](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html) is used to generate 
+The [identityGenerator](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html#identitygenerator) 
+on the [Configuration](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html) is used to generate 
 an identifier for an entity. The default identity generator is the 
-[ObjectIdGenerator](https://artifacthealth.github.io/hydrate-mongodb/classes/objectidgenerator.html). This is the only 
+[ObjectIdGenerator](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/objectidgenerator.html). This is the only 
 generator that ships with Hydrate. Composite identifiers are not supported. Natural identifiers are not supported.
 
 The identifier is exposed on an entity as a string through the `id` property and in it's native format, typically ObjectID, 
@@ -460,16 +460,16 @@ export class Person {
 ```  
 
 * The embeddable must be a class
-* The embeddable must be decorated with the [Embeddable](https://artifacthealth.github.io/hydrate-mongodb/globals.html#embeddable) decorator
+* The embeddable must be decorated with the [Embeddable](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#embeddable) decorator
 * Like an entity, an embeddable is **not** required to have a parameterless constructor. When an embeddable is 
 deserialized from the database, the constructor is not called. This means the internal state of an embeddable must fully 
 represented by it's serialized fields.
-* If the [Immutable](https://artifacthealth.github.io/hydrate-mongodb/globals.html#immutable) decorator is specified on an Embeddable class, the original document for the Embeddable is cached and used for serialization.
+* If the [Immutable](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#immutable) decorator is specified on an Embeddable class, the original document for the Embeddable is cached and used for serialization.
 
 
-Using the [Parent](https://artifacthealth.github.io/hydrate-mongodb/globals.html#parent) decorator, Embeddables can designate a property to reference the object they are embedded in. 
+Using the [Parent](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#parent) decorator, Embeddables can designate a property to reference the object they are embedded in. 
 The property is automatically populated with a reference to the parent object when the embeddable is loaded from the database. Properties annotated 
-with [Parent](https://artifacthealth.github.io/hydrate-mongodb/globals.html#parent) are not persisted to the database. 
+with [Parent](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#parent) are not persisted to the database. 
 
 ```typescript
 @Entity()
@@ -512,7 +512,7 @@ When using TypeScript, the type of a field is automatically provided. The follow
 
 When a property is an embeddable or a reference to an entity, sometimes the type of the property cannot be determined 
 because of circular references of `import` statements. In this case the 
-[Type](https://artifacthealth.github.io/hydrate-mongodb/globals.html#type) decorator should be used with the name 
+[Type](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#type) decorator should be used with the name 
 of the type.
 
 ```typescript
@@ -533,7 +533,7 @@ export class Person {
 **Arrays**
 
 TypeScript does not provide the type of an array element, so the type of the array element must be indicate with the 
-[ElementType](https://artifacthealth.github.io/hydrate-mongodb/globals.html#elementtype) decorator.
+[ElementType](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#elementtype) decorator.
 
 ```typescript
 @Entity()
@@ -559,7 +559,7 @@ export class Person {
 **Enums**
 
 By default enums are serialized as numbers. Use the 
-[Enumerated](https://artifacthealth.github.io/hydrate-mongodb/globals.html#enumerated) decorator to serialize enums as strings.
+[Enumerated](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#enumerated) decorator to serialize enums as strings.
 
 ```typescript
 export enum TaskStatus {
@@ -604,7 +604,7 @@ class Organization extends Party {
 ```
 
 All entities within an inheritance hierarchy are stored in the same collection. If the 
-[Collection](https://artifacthealth.github.io/hydrate-mongodb/globals.html#collection) decorator is used,
+[Collection](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#collection) decorator is used,
 it is only valid on the root of an inheritance hierarchy.
 
 
@@ -637,7 +637,7 @@ class Document extends Asset {
 }
 ```
 
-If `Asset` was decorated with [Entity](https://artifacthealth.github.io/hydrate-mongodb/globals.html#entity) then `Patient`
+If `Asset` was decorated with [Entity](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#entity) then `Patient`
 and `Document` would instead both be stored in a collection called `asset`.
 
 <a name="Discriminators"></a>
@@ -645,11 +645,11 @@ and `Document` would instead both be stored in a collection called `asset`.
 
 If an inheritance hierarchy is defined, a discriminator field is added to the serialized document to indicate the type
 when deserializing the entity or embeddable. By default, the 
-[discriminatorField](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html#discriminatorfield) 
-on the [Configuration](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html) is used
+[discriminatorField](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html#discriminatorfield) 
+on the [Configuration](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html) is used
 to determine the name of the field to store the discriminator. Optionally, the discriminator field can be specified
 on the root of an inheritance hierarchy using the 
-[DiscriminatorField](https://artifacthealth.github.io/hydrate-mongodb/globals.html#discriminatorfield) decorator.
+[DiscriminatorField](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#discriminatorfield) decorator.
 
 ```typescript
 @Entity()
@@ -660,7 +660,7 @@ class Party {
 ```
 
 The class discriminator can be specified using the 
-[DiscriminatorValue](https://artifacthealth.github.io/hydrate-mongodb/globals.html#discriminatorvalue) decorator.
+[DiscriminatorValue](https://artifacthealth.github.io/iodine-hydrate-mongodb/globals.html#discriminatorvalue) decorator.
 
 ```typescript
 @Entity()
@@ -677,8 +677,8 @@ class Organization extends Party {
 ```
 
 If the discriminator value is not explicitly specified for a class, it is determined using the 
-[discriminatorNamingStrategy](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html#discriminatornamingstrategy) on the 
-[Configuration](https://artifacthealth.github.io/hydrate-mongodb/classes/configuration.html).
+[discriminatorNamingStrategy](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html#discriminatornamingstrategy) on the 
+[Configuration](https://artifacthealth.github.io/iodine-hydrate-mongodb/classes/configuration.html).
 By default, the name of the class is used. 
 
 <a name="Fetching"></a>

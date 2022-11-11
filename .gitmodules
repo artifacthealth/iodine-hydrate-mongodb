@@ -1,4 +1,4 @@
 [submodule "docs"]
 	path = docs
-	url = https://github.com/artifacthealth/hydrate-mongodb.git
+	url = https://github.com/artifacthealth/iodine-hydrate-mongodb.git
 	branch = gh-pages

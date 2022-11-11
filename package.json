@@ -1,14 +1,14 @@
 {
-  "name": "hydrate-mongodb",
+  "name": "iodine-hydrate-mongodb",
   "description": "An Object Document Mapper (ODM) for MongoDB.",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "author": {
-    "name": "Artifact Health, Inc",
-    "url": "http://www.artifacthealth.com"
+    "name": "Iodine Software, Llc",
+    "url": "http://www.iodinesoftware.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/artifacthealth/hydrate-mongodb"
+    "url": "https://github.com/artifacthealth/iodine-hydrate-mongodb"
   },
   "license": "MIT",
   "main": "index.js",
