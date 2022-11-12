@@ -11,7 +11,7 @@ export class ResolveContext {
     error: Error;
 
     private _path: string[];
-    private _resolvePath: string[]
+    private _resolvePath: string[];
     private _depth: number;
 
     constructor(public path: string) {

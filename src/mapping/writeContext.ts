@@ -1,5 +1,4 @@
 import {MappingError, createErrorMessage} from "./mappingError";
-import {InternalSession} from "../session";
 
 /**
  * @hidden

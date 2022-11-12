@@ -84,15 +84,15 @@ export class PersisterImpl implements Persister {
     changeTracking: ChangeTrackingType;
     identity: IdentityGenerator;
 
-    private _versioned: boolean;
+    private readonly _versioned: boolean;
     private _findQueue: FindQueue;
-    private _mapping: EntityMapping;
-    private _collection: mongodb.Collection;
-    private _session: InternalSession;
+    private readonly _mapping: EntityMapping;
+    private readonly _collection: mongodb.Collection;
+    private readonly _session: InternalSession;
     private _criteriaBuilder: CriteriaBuilder;
     private _updateDocumentBuilder: UpdateDocumentBuilder;
-    private _traceEnabled: boolean;
-    private _defaultFields: QueryDocument;
+    private readonly _traceEnabled: boolean;
+    private readonly _defaultFields: QueryDocument;
 
     constructor(session: InternalSession, mapping: EntityMapping, collection: mongodb.Collection) {
 
@@ -1198,7 +1198,7 @@ type EntityLoaded = (document: Object, callback: ResultCallback<any>) => void;
 class CursorImpl<T> {
 
     private _cursor: mongodb.Cursor;
-    private _loader: EntityLoaded;
+    private readonly _loader: EntityLoaded;
 
     constructor(cursor: mongodb.Cursor, loader: EntityLoaded) {
 

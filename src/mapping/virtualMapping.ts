@@ -1,7 +1,5 @@
-import {MappingError} from "./mappingError";
 import {MappingBase} from "./mappingBase";
 import {MappingModel} from "./mappingModel";
-import {InternalSession} from "../session";
 import {ReadContext} from "./readContext";
 import {WriteContext} from "./writeContext";
 
@@ -10,7 +8,7 @@ import {WriteContext} from "./writeContext";
  */
 export abstract class VirtualMapping extends MappingBase {
 
-    constructor() {
+    protected constructor() {
         super(MappingModel.MappingFlags.Virtual);
     }
 

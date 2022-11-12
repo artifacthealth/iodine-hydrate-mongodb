@@ -1,7 +1,7 @@
 import {MappingModel} from "./mappingModel";
 import {Reference} from "../reference";
 import {InternalSession} from "../session";
-import {ResultCallback} from "../core/callback";
+import {ResultCallback} from "..";
 import {ResolveContext} from "./resolveContext";
 import {ReadContext} from "./readContext";
 import {Observer} from "../observer";
@@ -20,7 +20,7 @@ export abstract class MappingBase implements InternalMapping {
 
     private _resolveCache: Map<string, ResolveContext>;
 
-    constructor(public flags: MappingModel.MappingFlags) {
+    protected constructor(public flags: MappingModel.MappingFlags) {
         this.id = nextMappingId++;
     }
 

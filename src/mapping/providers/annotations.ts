@@ -11,7 +11,7 @@ import {Type, Property, Method} from "reflect-helper";
 import {EntityMappingBuilder} from "./entityMappingBuilder";
 import {ClassMappingBuilder} from "./classMappingBuilder";
 import {Index} from "../index";
-import {IdentityGenerator} from "../../config/configuration";
+import {IdentityGenerator} from "../..";
 
 /**
  * Indicates the order in which annotations are processed. Annotations with a higher priority are processed first.
@@ -299,21 +299,21 @@ export class IndexAnnotation extends Annotation implements ClassAnnotation, Prop
     processClassAnnotation(context: MappingBuilderContext, mapping: MappingModel.EntityMapping, annotation: IndexAnnotation): void {
 
         if (context.assertEntityMapping(mapping)) {
-            this._addIndex(context, mapping, annotation);
+            IndexAnnotation._addIndex(context, mapping, annotation);
         }
     }
 
     processPropertyAnnotation(context: MappingBuilderContext, mapping: MappingModel.EntityMapping, property: MappingModel.Property, symbol: Property, annotation: IndexAnnotation): void {
 
         if (context.assertEntityMapping(mapping)) {
-            this._addIndex(context, mapping, {
+            IndexAnnotation._addIndex(context, mapping, {
                 keys: [[property.name, annotation.order || 1]],
                 options: annotation.options
             });
         }
     }
 
-    private _addIndex(context: MappingBuilderContext, mapping: MappingModel.EntityMapping, value: Index): void {
+    private static _addIndex(context: MappingBuilderContext, mapping: MappingModel.EntityMapping, value: Index): void {
 
         // TODO: allow indexes in embedded types and map to containing root type
         if(context.assertEntityMapping(mapping)) {

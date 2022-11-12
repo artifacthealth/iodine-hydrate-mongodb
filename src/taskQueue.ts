@@ -21,7 +21,7 @@ interface Task {
  */
 export class TaskQueue extends EventEmitter {
 
-    private _execute: (operation: number, arg: any, callback: ResultCallback<any>) => void;
+    private readonly _execute: (operation: number, arg: any, callback: ResultCallback<any>) => void;
     private _activeCounts: Table<number> = {};
     private _active: number = 0;
     private _head: Task;

@@ -7,7 +7,7 @@ import {PersistenceError} from "./persistenceError";
 export class Observer {
 
     private _watching: any[] = [];
-    private _onChange: (changes: ObjectChangeInfo[]) => void;
+    private readonly _onChange: (changes: ObjectChangeInfo[]) => void;
 
     /**
      * Creates an Observer object.

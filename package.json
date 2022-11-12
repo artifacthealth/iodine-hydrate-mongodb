@@ -1,7 +1,7 @@
 {
   "name": "iodine-hydrate-mongodb",
   "description": "An Object Document Mapper (ODM) for MongoDB.",
-  "version": "2.5.1",
+  "version": "2.5.3",
   "author": {
     "name": "Iodine Software, Llc",
     "url": "http://www.iodinesoftware.com"

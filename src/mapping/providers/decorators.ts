@@ -31,7 +31,7 @@ import {
 import {PropertyConverter, FetchType} from "../mappingModel";
 import {ChangeTrackingType} from "../mappingModel";
 import {CascadeFlags} from "../mappingModel";
-import {IdentityGenerator} from "../../config/configuration";
+import {IdentityGenerator} from "../..";
 
 /**
  * Specifies that a class is a persistent entity and will be serialized to a document within a MongoDB collection.
@@ -164,17 +164,17 @@ export declare function Collection(description?: CollectionDescription): ClassDe
  *      get first(): string {
  *          return this._first;
  *      }
- *      
+ *
  *      get last(): string {
  *          return this._last;
  *      }
- *      
+ *
  *      @Field()
  *      private _last: string;
  *
  *      @Field()
  *      private _first: string;
- *      
+ *
  *      constructor(last: string, first: string) {
  *          this._last = last;
  *          this._first = first;

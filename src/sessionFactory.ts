@@ -12,7 +12,7 @@ import {Logger} from "./config/configuration";
 import {shallowClone, shallowEqual} from "./core/objectUtil";
 import {Callback} from "./core/callback";
 import {PersistenceError} from "./persistenceError";
-import {Index} from "./mapping/index";
+import {Index} from "./mapping";
 
 export interface SessionFactory {
 
@@ -79,7 +79,7 @@ export class SessionFactoryImpl implements InternalSessionFactory {
     connection: MongoClient;
     logger: Logger;
 
-    private _collections: Table<Collection>;
+    private readonly _collections: Table<Collection>;
     private _mappingRegistry: MappingRegistry;
 
     constructor(connection: MongoClient, collections: Table<Collection>, mappingRegistry: MappingRegistry) {

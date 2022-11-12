@@ -13,7 +13,7 @@ import {InternalMapping} from "./internalMapping";
 import {Property as PropertyImpl} from "./property";
 import {Index} from "./index";
 import {CollectionOptions} from "./collectionOptions";
-import {IdentityGenerator} from "../config/configuration";
+import {IdentityGenerator} from "..";
 import {ConverterMapping} from "./converterMapping";
 import {BufferMapping} from "./bufferMapping";
 import {PersistenceError} from "../persistenceError";

@@ -1,9 +1,9 @@
-import {ResultCallback} from "../core/callback";
-import {IteratorCallback} from "../core/callback";
+import {ResultCallback} from "..";
+import {IteratorCallback} from "..";
 import {QueryKind} from "./queryKind";
 import {QueryDocument} from "./queryBuilder";
 import {OrderDocument} from "./orderDocument";
-import {CollationOptions} from "../mapping/collationOptions";
+import {CollationOptions} from "..";
 
 /**
  * @hidden

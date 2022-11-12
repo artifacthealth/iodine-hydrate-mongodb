@@ -13,7 +13,7 @@ export class ClassMappingBuilder extends ObjectMappingBuilder {
         mapping.name = this.type.name;
         mapping.classConstructor = <any>this.type.ctr;
 
-        super.populateCore()
+        super.populateCore();
 
         // add default values
         if (mapping.flags & MappingModel.MappingFlags.InheritanceRoot) {

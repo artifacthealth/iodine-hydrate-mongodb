@@ -16,9 +16,7 @@ export class ObjectIdGenerator implements IdentityGenerator {
 
         if(value == null) return false;
 
-        if(value._bsontype && value._bsontype == 'ObjectID') return true;
-
-        return false;
+        return !!(value._bsontype && value._bsontype == 'ObjectID');
     }
 
     fromString(text: string): any {

@@ -3,7 +3,7 @@ import {MappingRegistry} from "./mappingRegistry";
 import {Reference} from "../reference";
 import {MappingModel} from "./mappingModel";
 import {InternalSession} from "../session";
-import {ResultCallback} from "../core/callback";
+import {ResultCallback} from "..";
 import {ReadContext} from "./readContext";
 import {WriteContext} from "./writeContext";
 import {PersistenceError} from "../persistenceError";
@@ -15,7 +15,7 @@ var OriginalDocument = Symbol();
  */
 export class ClassMapping extends ObjectMapping {
 
-    private _baseClass: ClassMapping;
+    private readonly _baseClass: ClassMapping;
     private _subclasses: ClassMapping[];
     private _discriminatorMap: Map<string, ClassMapping>;
     private _registry: MappingRegistry;
@@ -225,7 +225,7 @@ export class ClassMapping extends ObjectMapping {
     protected readClass(context: ReadContext, value: any): any {
 
         var obj = this.readObject(context, Object.create(this.classConstructor.prototype), value, /*checkRemoved*/ false);
-        
+
         // save original document value for immutable embeddable
         if ((this.flags & MappingModel.MappingFlags.ImmutableEmbeddable) == MappingModel.MappingFlags.ImmutableEmbeddable) {
             obj[OriginalDocument] = value;

@@ -1,4 +1,4 @@
-import {IdentityGenerator} from "../config/configuration";
+import {IdentityGenerator} from "..";
 import {ClassMapping} from "./classMapping";
 import {ChangeTrackingType, FlushPriority} from "./mappingModel";
 import {Index} from "./index";
@@ -6,14 +6,14 @@ import {CollectionOptions} from "./collectionOptions";
 import {MappingModel} from "./mappingModel";
 import {Reference} from "../reference";
 import {InternalSession} from "../session";
-import {ResultCallback} from "../core/callback";
+import {ResultCallback} from "..";
 import {ResolveContext} from "./resolveContext";
 import {ReadContext} from "./readContext";
 import {Observer} from "../observer";
 import {Property} from "./property";
 import {WriteContext} from "./writeContext";
 import {PersistenceError} from "../persistenceError";
-import {QueryDocument} from "../query/queryBuilder";
+import {QueryDocument} from "..";
 
 /**
  * @hidden

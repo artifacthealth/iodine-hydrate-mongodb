@@ -310,7 +310,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
      */
     private _queue: TaskQueue;
 
-    private _traceEnabled: boolean;
+    private readonly _traceEnabled: boolean;
 
     constructor(public factory: InternalSessionFactory) {
         super();
@@ -593,7 +593,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
         if (!links.originalDocument) {
             return 0;
         }
-        
+
         var mapping = this.factory.getMappingForObject(obj);
         if (!mapping) {
             return null;
@@ -646,7 +646,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
         }
     }
 
-    private _stopWatching(links: ObjectLinks): void {
+    private static _stopWatching(links: ObjectLinks): void {
 
         if(links.observer) {
             links.observer.destroy();
@@ -779,7 +779,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
     }
 
     private _makeDirty(links: ObjectLinks): void {
-        
+
         // still flag the object as dirty even if we aren't going to schedule a dirty check because
         // the current operation could be canceled (e.g. save called after remove before flush),
         // and we'll want to queue the object for dirty check at that point.
@@ -919,7 +919,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
 
             // Refreshing an entity should not cause it to become dirty, so if we have an observer, destroy it before
             // refreshing the object.
-            this._stopWatching(links);
+            SessionImpl._stopWatching(links);
 
             links.persister.refresh(links.object, (err, document) => {
                 if(err) return done(err);
@@ -1020,7 +1020,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
      * @param callback Called when processing is completed.
      */
     private _batchCompleted(head: ObjectLinks, duration: number, callback: Callback): void {
-        
+
         if (this._traceEnabled) {
             this._logFlushStats(head, duration);
         }
@@ -1039,7 +1039,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
                     // unlink any removed objects.
                     this._unlinkObject(links);
                     // then remove it's identifier
-                    this._clearIdentifier(links);
+                    SessionImpl._clearIdentifier(links);
                     break;
                 case ObjectState.Managed:
                     this._trackChanges(links);
@@ -1053,7 +1053,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
 
         callback();
     }
-    
+
     private _logFlushStats(head: ObjectLinks, duration: number): void {
 
         var inserted = 0, updated = 0, removed = 0, dirtyChecked = 0;
@@ -1078,7 +1078,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
 
             links = links.next;
         }
-        
+
         this.factory.logger.trace(
             {
                 duration,
@@ -1221,10 +1221,10 @@ export class SessionImpl extends EventEmitter implements InternalSession {
 
     private _cleanupUnlinkedObject(links: ObjectLinks): void {
 
-        this._stopWatching(links);
+        SessionImpl._stopWatching(links);
         // if the object was never persisted, then clear it's identifier as well
         if (links.scheduledOperation == ScheduledOperation.Insert) {
-            this._clearIdentifier(links);
+            SessionImpl._clearIdentifier(links);
         }
     }
 
@@ -1272,7 +1272,7 @@ export class SessionImpl extends EventEmitter implements InternalSession {
         links.scheduledOperation = ScheduledOperation.None;
     }
 
-    private _clearIdentifier(links: ObjectLinks): void {
+    private static _clearIdentifier(links: ObjectLinks): void {
 
         links.object["_id"] = links.object["id"] = undefined;
     }

@@ -1,4 +1,4 @@
-import {Configuration} from "../../config/configuration";
+import {Configuration} from "../..";
 import {Type, Property, ReflectContext, Method} from "reflect-helper";
 import {Constructor} from "../../index";
 import {MappingBuilder} from "./mappingBuilder";

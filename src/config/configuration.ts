@@ -1,9 +1,9 @@
 import * as async from "async";
-import {Collection, MongoClient, Db} from "mongodb";
+import {Collection, MongoClient} from "mongodb";
 import {NamingStrategy, NamingStrategies} from "./namingStrategies";
-import {ResultCallback} from "../core/callback";
+import {ResultCallback} from "..";
 import {MappingRegistry} from "../mapping/mappingRegistry";
-import {ChangeTrackingType} from "../mapping/mappingModel";
+import {ChangeTrackingType} from "..";
 import {Table} from "../core/table";
 import {MappingModel, PropertyConverter} from "../mapping/mappingModel";
 import {SessionFactory, SessionFactoryImpl} from "../sessionFactory";

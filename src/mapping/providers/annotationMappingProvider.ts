@@ -1,4 +1,4 @@
-import {ResultCallback} from "../../core/callback";
+import {ResultCallback} from "../..";
 import {MappingModel} from "../mappingModel";
 import {MappingProvider, Configuration} from "../../config/configuration";
 import {Type, Property} from "reflect-helper";
@@ -61,7 +61,7 @@ export class AnnotationMappingProvider implements MappingProvider {
 
 class Builder {
 
-    private _context: MappingBuilderContext;
+    private readonly _context: MappingBuilderContext;
     private _seenTypes = new Set<any>();
 
     constructor(config: Configuration) {

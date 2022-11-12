@@ -1,6 +1,6 @@
-import {Callback} from "../core/callback";
-import {ResultCallback} from "../core/callback";
-import {IteratorCallback} from "../core/callback";
+import {Callback} from "..";
+import {ResultCallback} from "..";
+import {IteratorCallback} from "..";
 import {InternalSession} from "../session";
 import {QueryDefinition} from "./queryDefinition";
 import {QueryKind} from "./queryKind";
@@ -8,7 +8,7 @@ import {Constructor} from "../index"
 import {PersistenceError} from "../persistenceError";
 import {Observable} from "rx";
 import {Cursor} from "../persister";
-import {CollationOptions} from "../mapping/collationOptions";
+import {CollationOptions} from "..";
 
 export interface QueryBuilder<T> {
     findAll(callback?: ResultCallback<T[]>): FindQuery<T>;
@@ -125,8 +125,8 @@ export interface FindQuery<T> extends Query<T[]> {
  */
 export class QueryBuilderImpl<T> implements QueryBuilder<T> {
 
-    private _session: InternalSession;
-    private _entityCtr: Constructor<any>;
+    private readonly _session: InternalSession;
+    private readonly _entityCtr: Constructor<any>;
 
     constructor(session: InternalSession, entityCtr: Constructor<any>) {
 
@@ -322,7 +322,7 @@ class QueryObject implements QueryDefinition, FindQuery<Object>, FindOneQuery<Ob
     error: Error;
 
     private _session: InternalSession;
-    private _entityCtr: Constructor<any>;
+    private readonly _entityCtr: Constructor<any>;
     private _executed: boolean;
 
     constructor(session: InternalSession, entityCtr: Constructor<any>, public kind: QueryKind) {

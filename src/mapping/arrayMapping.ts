@@ -4,7 +4,7 @@ import {MappingBase} from "./mappingBase";
 import {Reference} from "../reference";
 import {MappingModel} from "./mappingModel";
 import {InternalSession} from "../session";
-import {ResultCallback} from "../core/callback";
+import {ResultCallback} from "..";
 import {EntityMapping} from "./entityMapping";
 import {ResolveContext} from "./resolveContext";
 import {TupleMapping} from "./tupleMapping";
@@ -32,11 +32,10 @@ export class ArrayMapping extends MappingBase {
         }
 
         // TODO: remove items scheduled for delete from array
-        var result = new Array(value.length),
-            mapping = this.elementMapping;
+        var result = new Array(value.length);
 
         for (var i = 0, l = value.length; i < l; i++) {
-            result[i] = mapping.read(context, value[i]);
+            result[i] = this.elementMapping.read(context, value[i]);
         }
 
         // if there is an observer in the context, then watch this array for changes.
@@ -56,11 +55,10 @@ export class ArrayMapping extends MappingBase {
             return;
         }
 
-        var result = new Array(value.length),
-            mapping = this.elementMapping;
+        var result = new Array(value.length);
 
         for (var i = 0, l = value.length; i < l; i++) {
-            result[i] = mapping.write(context, value[i]);
+            result[i] = this.elementMapping.write(context, value[i]);
         }
 
         return result;
@@ -86,13 +84,12 @@ export class ArrayMapping extends MappingBase {
             return false;
         }
 
-        var mapping = this.elementMapping;
         for (var i = 0, l = documentValue1.length; i < l; i++) {
             // get the field values from the documents
             var fieldValue1 = documentValue1[i];
             var fieldValue2 = documentValue2[i];
 
-            if (fieldValue1 !== fieldValue2 && !mapping.areEqual(fieldValue1, fieldValue2)) {
+            if (fieldValue1 !== fieldValue2 && !this.elementMapping.areEqual(fieldValue1, fieldValue2)) {
                 return false;
             }
         }
@@ -107,9 +104,8 @@ export class ArrayMapping extends MappingBase {
             return;
         }
 
-        var mapping = this.elementMapping;
         for (var i = 0, l = value.length; i < l; i++) {
-            mapping.walk(session, value[i], flags, entities, embedded, references);
+            this.elementMapping.walk(session, value[i], flags, entities, embedded, references);
         }
     }
 

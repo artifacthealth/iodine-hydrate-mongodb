@@ -3,7 +3,7 @@ import {MappingModel} from "./mappingModel";
 import {Property} from "./property";
 import {Reference} from "../reference";
 import {InternalSession} from "../session";
-import {ResultCallback} from "../core/callback";
+import {ResultCallback} from "..";
 import {ResolveContext} from "./resolveContext";
 import {ReadContext} from "./readContext";
 import {Observer} from "../observer";

@@ -1,7 +1,6 @@
 import {MappingBuilder} from "./mappingBuilder";
 import {MappingModel} from "../mappingModel";
 import {
-    Annotation,
     ClassAnnotation,
     PropertyAnnotation,
     ConverterAnnotation,
@@ -12,7 +11,6 @@ import {
 import {Type, Property} from "reflect-helper";
 import {Constructor} from "../../index";
 import {MethodAnnotation} from "./annotations";
-import ClassMapping = MappingModel.ClassMapping;
 
 
 /**
@@ -145,7 +143,7 @@ export class ObjectMappingBuilder extends MappingBuilder {
             }
             this.context.currentAnnotation = null;
         }
-        
+
         return property;
     }
 
@@ -234,9 +232,7 @@ export class ObjectMappingBuilder extends MappingBuilder {
             }
         }
 
-        var enumMapping = MappingModel.createEnumMapping(members);
-
-        return enumMapping;
+        return MappingModel.createEnumMapping(members);
     }
 
     private _getMapping(target: Type | Constructor<any> | string): MappingModel.Mapping {

@@ -1,13 +1,10 @@
 import {QueryDocument} from "./queryBuilder";
-import {ResolveContext} from "../mapping/resolveContext";
 import {MappingModel} from "../mapping/mappingModel";
 import {ArrayMapping} from "../mapping/arrayMapping";
 import {InternalMapping} from "../mapping/internalMapping";
-import {MappingError} from "../mapping/mappingError";
 import {CriteriaBuilder} from "./criteriaBuilder";
 import {ObjectMapping} from "../mapping/objectMapping";
 import {ClassMapping} from "../mapping/classMapping";
-import {EntityMapping} from "../mapping/entityMapping";
 import {PersistenceError} from "../persistenceError";
 
 /**
